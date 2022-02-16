@@ -30,3 +30,13 @@ Search by customer name
   }
 }
 ```
+
+Add new customer
+
+```graphql
+mutation {
+  addCustomer(name: "Ivy"){
+    id, name
+  }
+}
+```

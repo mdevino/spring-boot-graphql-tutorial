@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
+import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.graphql.data.method.annotation.SchemaMapping;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import com.mdevino.learning.spring.graphql.demo.order.Order;
 
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 @Controller
 public class CustomerController {
@@ -35,6 +37,11 @@ public class CustomerController {
 			orders.add(new Order(orderId, customer.id()));
 		}
 		return Flux.fromIterable(orders);
+	}
+	
+	@MutationMapping
+	Mono<Customer> addCustomer(@Argument String name){
+		return repository.save(new Customer(null, name));
 	}
 	
 }
