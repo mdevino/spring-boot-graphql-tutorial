@@ -3,6 +3,7 @@ package com.mdevino.learning.spring.graphql.demo.customer;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.graphql.data.method.annotation.SchemaMapping;
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,11 @@ public class CustomerController {
 	@QueryMapping
 	Flux<Customer> customers() {
 		return this.repository.findAll();
+	}
+	
+	@QueryMapping
+	Flux<Customer> customersByName(@Argument String name){
+		return repository.findByName(name);
 	}
 	
 	@SchemaMapping(typeName = "Customer")
