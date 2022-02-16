@@ -40,3 +40,17 @@ mutation {
   }
 }
 ```
+
+Subscribe to customer event.
+
+```graphql
+subscription {
+  customerEvents(customerId: 1){
+    event,
+    customer {
+      id,
+      name
+    }
+  }
+}
+```
