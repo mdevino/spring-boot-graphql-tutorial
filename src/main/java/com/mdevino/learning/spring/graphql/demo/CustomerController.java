@@ -1,7 +1,7 @@
 package com.mdevino.learning.spring.graphql.demo;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.graphql.data.method.annotation.SchemaMapping;
+import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
 
 import reactor.core.publisher.Flux;
@@ -12,7 +12,7 @@ public class CustomerController {
 	@Autowired
 	private CustomerRepository repository;
 
-	@SchemaMapping(typeName = "Query", field = "customers")
+	@QueryMapping
 	Flux<Customer> customers() {
 		return this.repository.findAll();
 	}
